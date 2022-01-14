@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  apache_static:
+    build: ./docker-images/apache-php-image
+    image: api/apache-static
+  express_students:
+      build: ./docker-images/express-image
+      image: api/express-dynamic
+  apache_rp:
+    build: ./docker-images/apache-reverse-proxy
+    image: api/apache-rp
+    ports:
+      - "8080:80"
