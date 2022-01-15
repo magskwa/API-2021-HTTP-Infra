@@ -5,7 +5,7 @@ var express = require('express')
 var app = express()
 
 app.get('/', function(req, res) {
-    res.send(generateStudents());
+    res.send(generateRandomWorkingAnimals());
 });
 
 app.listen(3000, function() {
@@ -38,4 +38,13 @@ function generateStudents() {
     }
     console.log(students);
     return students;
+}
+
+function generateRandomWorkingAnimals() {
+    var workingAnimal = {
+        animal: chance.animal(),
+        profession: chance.profession({rank: true})
+    }
+
+    return workingAnimal;
 }
