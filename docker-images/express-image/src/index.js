@@ -12,39 +12,21 @@ app.listen(3000, function() {
     console.log("Accepting HTTP requests on port 3000");
 });
 
-function generateStudents() {
-    var numberOfStudents = chance.integer({
+function generateRandomWorkingAnimals() {
+    var numberOfAnimals = chance.integer({
         min: 0,
         max: 10
     });
-    console.log(numberOfStudents);
-    var students = [];
-    for (var i = 0; i < numberOfStudents; i++) {
-        var gender = chance.gender();
-        var birthYear = chance.year({
-            min: 1986,
-            max: 1996
-        });
-        students.push({
-            firstName: chance.first({
-                gender: gender
-            }),
+    console.log(numberOfAnimals);
+    var animals = [];
+    for (var i = 0; i < numberOfAnimals; i++) {
+        animals.push({
+            animal: chance.animal(),
+            firstName: chance.first(),
             lastName: chance.last(),
-            gender: gender,
-            birthday: chance.birthday({
-                year: birthYear
-            })
+            profession: chance.profession()
         });
     }
-    console.log(students);
-    return students;
-}
-
-function generateRandomWorkingAnimals() {
-    var workingAnimal = {
-        animal: chance.animal(),
-        profession: chance.profession({rank: true})
-    }
-
-    return workingAnimal;
+    console.log(animals);
+    return animals;
 }
