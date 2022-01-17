@@ -1,13 +1,32 @@
 version: "3.9"
 services:
+  traefik_rp:
+    image: traefik:v2.5
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "8888:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   apache_static:
     build: ./docker-images/apache-php-image
     image: api/apache-static
-  express_students:
+    deploy:
+      replicas: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.apache_static.rule=Host(`demo.api.ch`) && PathPrefix(`/`)"
+      - "traefik.http.routers.apache_static.service=apache_static"
+      - "traefik.http.services.apache_static.loadbalancer.sticky=true"
+      - "traefik.http.services.apache_static.loadbalancer.sticky.cookie.name=session"
+  express_dynamic:
       build: ./docker-images/express-image
       image: api/express-dynamic
-  apache_rp:
-    build: ./docker-images/apache-reverse-proxy
-    image: api/apache-rp
-    ports:
-      - "8080:80"
+      deploy:
+        replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.express_dynamic.rule=Host(`demo.api.ch`) && PathPrefix(`/api/animals/`)"
+        - "traefik.http.services.express_dynamic.loadbalancer.server.port=3000"
+        - "traefik.http.routers.express_dynamic.middlewares=express_dynamic-stripprefix"
+        - "traefik.http.middlewares.express_dynamic-stripprefix.stripprefix.prefixes=/api/animals/"
