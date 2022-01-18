@@ -18,7 +18,7 @@ pour le proxy dans les parties précédentes. Il faut ensuite faire exécuter de
 
 Il faut ensuite maper les ports comme il se doit tout en sachant que Traefik offre un dashboard qui permet
 de surveiller le traffic et le bon fonctionnement de l'infrastructure (activé grâce à la commande effectuée
-plus haut). Nous avons choisi de mapper le port HTTP sur le port 8081.
+plus haut). Nous avons choisi de mapper le port HTTP sur le port 8888.
 
 Ensuite, il faut créer un volume, ce qui équivaut à mapper un dossier sur un autre, pour que Traefik
 puisse être à l'écoute des évenements Docker. Notre image Traefik est prête !
@@ -59,6 +59,6 @@ le paramétrage adéquat dans notre fichier [*docker-compose.yml*](./docker-comp
 Pour tester le fonctionnement de notre projet, il ne reste plus qu' exécuter la commande suivante à la racine du projet:
 ``docker-compose up`` ou ``docker-compose up --build`` après modification de certaines fichiers.
 
-Nous pouvons ensuite nous connecter sur *demo.api.ch:8081* et nous aurons le même résultat qu'à l'étape 5. En nous
+Nous pouvons ensuite nous connecter sur *demo.api.ch:8888* et nous aurons le même résultat qu'à l'étape 5. En nous
 connectant sur *demo.api.ch:8080* nous auront accès au tableau de bord de Traefik pour pouvoir surveiller que tout
 fonctionne correctement.
