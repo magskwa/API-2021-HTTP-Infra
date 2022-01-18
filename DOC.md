@@ -11,4 +11,4 @@ Afin de vérifier le bon fonctionnement de notre serveur statique, il faut comme
 Puis démarrer un container à partir de cette image en mapant les ports souhaités:
 ``docker run -d -p <port>:80 <nom_image>`` **Note**: chez nous il s'agit du port 8080
 
-À présent nous pouvons nous connecter sur *localhost:<port>* et le serveur nous renverra le contenu de son dossier /var/www/html/.
+À présent nous pouvons nous connecter sur *localhost:port* et le serveur nous renverra le contenu de son dossier /var/www/html/.
