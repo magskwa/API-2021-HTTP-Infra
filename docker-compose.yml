@@ -12,7 +12,7 @@ services:
     build: ./docker-images/apache-php-image
     image: api/apache-static
     deploy:
-      replicas: 3
+      replicas: 5
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.apache_static.rule=Host(`demo.api.ch`) && PathPrefix(`/`)"
@@ -23,7 +23,7 @@ services:
       build: ./docker-images/express-image
       image: api/express-dynamic
       deploy:
-        replicas: 1
+        replicas: 4
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.express_dynamic.rule=Host(`demo.api.ch`) && PathPrefix(`/api/animals/`)"
