@@ -3,7 +3,7 @@ services:
   apache_static:
     build: ./docker-images/apache-php-image
     image: api/apache-static
-  express_students:
+  express_dynamic:
       build: ./docker-images/express-image
       image: api/express-dynamic
   apache_rp:

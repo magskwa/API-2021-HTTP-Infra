@@ -13,20 +13,10 @@ app.listen(3000, function() {
 });
 
 function generateRandomWorkingAnimals() {
-    var numberOfAnimals = chance.integer({
-        min: 0,
-        max: 10
-    });
-    console.log(numberOfAnimals);
-    var animals = [];
-    for (var i = 0; i < numberOfAnimals; i++) {
-        animals.push({
-            animal: chance.animal(),
-            firstName: chance.first(),
-            lastName: chance.last(),
-            profession: chance.profession()
-        });
-    }
-    console.log(animals);
-    return animals;
+    return {
+        animal: chance.animal(),
+        firstName: chance.first(),
+        lastName: chance.last(),
+        profession: chance.profession()
+    };
 }
